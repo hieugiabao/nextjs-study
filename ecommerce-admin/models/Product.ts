@@ -1,4 +1,5 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
+import type { Ref } from "@typegoose/typegoose";
 import { Category } from "./Category";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 

@@ -1,5 +1,5 @@
-import { Ref, getModelForClass, prop } from "@typegoose/typegoose";
-
+import { getModelForClass, prop } from "@typegoose/typegoose";
+import type { Ref } from "@typegoose/typegoose";
 export class Category {
   @prop({ required: true })
   public name!: string;
