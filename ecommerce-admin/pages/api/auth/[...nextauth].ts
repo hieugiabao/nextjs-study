@@ -31,6 +31,11 @@ export async function isAdminRequest(
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401);
+    res.end();
+    throw new Error("Unauthorized");
+  }
   if (!session?.user?.email || !adminEmails.includes(session.user.email)) {
     res.status(403);
     res.end();
