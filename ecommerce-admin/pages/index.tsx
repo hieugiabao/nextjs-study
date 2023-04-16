@@ -1,44 +1,34 @@
-import { mongooseConnect } from "@admin/lib/mongoose";
-import { InferGetServerSidePropsType } from "next";
-import Head from "next/head";
+import Layout from "@admin/components/Layout";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
-export default function Home({
-  isConnected,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home() {
+  const router = useRouter();
+  const logout = async () => {
+    await router.push("/");
+    await signOut();
+  };
+
   return (
-    <div className="container">
-      <Head>
-        <title>E-commerce Admin</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the console for errors.
-          </h2>
-        )}
-      </main>
-    </div>
+    <Layout>
+      <h1 className="text-2xl">Welcome admin</h1>
+      <button onClick={logout} className="flex gap-1 p-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+          />
+        </svg>
+        Logout
+      </button>
+    </Layout>
   );
-}
-
-export async function getServerSideProps() {
-  try {
-    await mongooseConnect();
-
-    return {
-      props: {
-        isConnected: true,
-      },
-    };
-  } catch (e) {
-    console.error(e);
-    return {
-      props: {
-        isConnected: false,
-      },
-    };
-  }
 }
