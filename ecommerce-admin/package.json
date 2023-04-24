@@ -9,16 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.312.0",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "@typegoose/typegoose": "^11.0.1",
-    "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "mime-types": "^2.1.35",
     "mongodb": "5.1.0",
     "mongoose": "^7.0.3",
+    "multiparty": "^4.2.3",
     "next": "13.3.0",
     "next-auth": "^4.22.0",
     "postcss": "8.4.21",
@@ -27,5 +29,10 @@
     "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^2.1.1",
+    "@types/multiparty": "^0.0.33",
+    "@types/node": "18.15.11"
   }
 }
