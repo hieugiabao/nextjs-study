@@ -2,8 +2,13 @@ import { prop, getModelForClass } from "@typegoose/typegoose";
 import type { Ref } from "@typegoose/typegoose";
 import { Category } from "./Category";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
+import { Base } from "@typegoose/typegoose/lib/defaultClasses";
+import { Types } from "mongoose";
 
 export class Product extends TimeStamps {
+  @prop({ required: true })
+  public _id?: string;
+
   @prop({ required: true })
   public title!: string;
 

@@ -2,6 +2,9 @@ import { getModelForClass, prop } from "@typegoose/typegoose";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
 export class Order extends TimeStamps {
+  @prop({ required: true })
+  public _id?: string;
+
   @prop()
   public line_items?: Object;
 
