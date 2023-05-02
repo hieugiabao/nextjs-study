@@ -1,7 +1,7 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
 import type { Ref } from "@typegoose/typegoose";
+import { Property } from "./Property";
 export class Category {
-  @prop({ required: true })
   public _id?: string;
 
   @prop({ required: true })
@@ -10,8 +10,8 @@ export class Category {
   @prop({ ref: Category })
   public parent?: Ref<Category>;
 
-  @prop({ type: () => [Object] })
-  public properties?: Object[];
+  @prop()
+  public properties?: Property[];
 }
 
 export const CategoryModel = getModelForClass(Category);

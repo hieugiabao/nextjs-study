@@ -4,9 +4,9 @@ import { Category } from "./Category";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 import { Base } from "@typegoose/typegoose/lib/defaultClasses";
 import { Types } from "mongoose";
+import { Property } from "./Property";
 
 export class Product extends TimeStamps {
-  @prop({ required: true })
   public _id?: string;
 
   @prop({ required: true })
@@ -24,8 +24,8 @@ export class Product extends TimeStamps {
   @prop({ ref: Category })
   public category?: Ref<Category>;
 
-  @prop({ type: () => [Object] })
-  public properties?: Object[];
+  @prop()
+  public properties?: Property[];
 }
 
 export const ProductModel = getModelForClass(Product);
