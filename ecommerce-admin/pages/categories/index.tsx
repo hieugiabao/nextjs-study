@@ -90,6 +90,7 @@ function CategoryPage({ swal }: CategoryPageProps) {
         if (result.isConfirmed) {
           const { _id } = category;
           await axios.delete("api/categories?_id=" + _id);
+          mutate(categories.filter((cate) => cate._id !== _id));
         }
       })
       .catch(console.error);
