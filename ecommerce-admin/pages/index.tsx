@@ -1,34 +1,26 @@
 import Layout from "@admin/components/Layout";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Home() {
-  const router = useRouter();
-  const logout = async () => {
-    await router.push("/");
-    await signOut();
-  };
-
+  const { data: session } = useSession();
   return (
     <Layout>
-      <h1 className="text-2xl">Welcome admin</h1>
-      <button onClick={logout} className="flex gap-1 p-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+      <div className="text-blue-900 flex justify-between">
+        <h2>
+          Hello, <b>{session?.user?.name}</b>
+        </h2>
+        <div className="flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden">
+          <Image
+            src={session?.user?.image || ""}
+            alt=""
+            className="w-6 h-6"
+            width={24}
+            height={24}
           />
-        </svg>
-        Logout
-      </button>
+          <span className="px-2">{session?.user?.name}</span>
+        </div>
+      </div>
     </Layout>
   );
 }
