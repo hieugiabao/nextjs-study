@@ -5,6 +5,7 @@ import mime from "mime-types";
 import { mongooseConnect } from "@admin/lib/mongoose";
 // import { isAdminRequest } from "@admin/pages/api/auth/[...nextauth]";
 import { NextApiRequest, NextApiResponse } from "next";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 const bucketName = process.env.AWS_S3_BUCKET_NAME;
 
@@ -22,7 +23,7 @@ export default async function handle(
   }
 
   await mongooseConnect();
-  // await isAdminRequest(req, res);
+  await isAdminRequest(req, res);
 
   const form = new multiparty.Form();
   const { fields, files } = await new Promise<FileRequest>(
