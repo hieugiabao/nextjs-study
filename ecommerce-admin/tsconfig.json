@@ -16,6 +16,7 @@
     "incremental": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "paths": {
       "@admin/*": ["./*"]
     }

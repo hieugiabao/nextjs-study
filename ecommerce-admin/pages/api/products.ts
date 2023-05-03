@@ -33,8 +33,8 @@ export default async function handle(
       res.json(productDoc);
       break;
     case "PUT":
-      const { _id, ...rest } = req.body;
-      await ProductModel.updateOne({ _id }, { rest });
+      const { _id } = req.body;
+      const result = await ProductModel.updateOne({ _id }, { ...req.body });
       res.json(true);
       break;
     case "DELETE":
