@@ -244,7 +244,7 @@ function CategoryPage({ swal }: CategoryPageProps) {
                 <tr key={category._id}>
                   <td>{category.name}</td>
                   <td>{(category?.parent as any)?.name}</td>
-                  <td>
+                  <td className="text-right">
                     <button
                       onClick={() => editCategory(category)}
                       className="btn-default mr-1"
