@@ -17,10 +17,13 @@ export const authOptions: AuthOptions = {
   ],
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
-    session: ({ session, token, user }) =>
-      session.user?.email && adminEmails.includes(session.user.email)
-        ? session
-        : (false as any),
+    signIn: ({ user }) => {
+      if (user.email && adminEmails.includes(user.email)) return true;
+      else throw new Error("Permission denied. Please contact admin.");
+    },
+  },
+  pages: {
+    error: "/auth/error",
   },
 };
 
